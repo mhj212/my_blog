@@ -3,7 +3,7 @@ configure :development do
   ActiveRecord::Base.establish_connection(
       :adapter => "postgresql",
       :host => "localhost",
-      :username => "omardelarosa",
+      :username => "mhj212",
       :database => "simple_blog",
       :encoding => "utf8"
     )
@@ -11,7 +11,7 @@ end
 
 configure :production do 
    #HEROKU CONFIG
-  db = URI.parse(ENV['HEROKU_POSTGRESQL_OLIVE_URL'])
+  db = URI.parse(ENV['HEROKU_POSTGRESQL_RED_URL'])
   #configuration info
   ActiveRecord::Base.establish_connection(
       :adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
