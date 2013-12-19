@@ -1,0 +1,45 @@
+<div id="main_container">
+<h1 class="main_heading">Posts</h1>
+  <ul id="posts">
+  <% @posts.each do |post| %>
+    <li class="post">
+      <h2 class="post_title"><a href="/post/<%= post['id'] %>"><%= post['title'] %></a></h2>
+      <p>by <%= post.user.username %> </p>
+      <p>created at <%= post.created_at %> </p>
+      <p class="post_body"><%= post['body'] %></p>
+      <form action="/delete/<%= post['id'] %>" method="POST">
+        <button>delete</button>
+      </form>
+      <form action="/post/<%= post['id'] %>/edit" method="GET">
+        <button>edit</button>
+      </form>
+    </li>
+  <% end %>
+  <form action="/create" method="POST" class="post_new">
+    <p>Title:<br>
+      <input type="text" name="title" />
+    </p>
+    Author: <select name="user_id">
+      <% @users.each do |user|%>
+        <option value="<%= user.id %>"><%= user.username %></option>
+      <% end %>
+    </select>
+    <p>
+    Body:<br>
+      <textarea name="body"></textarea>
+    </p>
+    <input type="submit" value="Post" />
+  </form>
+
+  <!-- Create a new user form by Ethan -->
+  <form action="/new_user" method="POST" class="user_news">
+    <h3>New User</h3>
+    <p>First name: <input type="text" name="first_name"/></p>
+    <p>Last name: <input type="text" name="last_name"/></p>
+    <p>Username: <input type="text" name="username"/></p>
+    <p>Bio:<br>
+      <textarea name="bio"></textarea></p>
+    <button action="submit">Add user</button>
+  </form>
+
+</div>
