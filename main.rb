@@ -5,11 +5,16 @@ require 'sinatra/activerecord/rake'
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 # configures the database
-require_relative 'config'
+require_relative 'config/environments'
 
 # models included
 require_relative 'models/post'
 require_relative 'models/user'
+
+#
+enable :sessions
+
+set :environment, :development
 
 get '/' do 
   @users = User.all
